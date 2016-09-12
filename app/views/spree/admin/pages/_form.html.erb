@@ -18,15 +18,19 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :body %> <span class="required">*</span>
-        <%= f.text_area :body, rows: 12, class: 'form-control' %>
-        <%= f.error_message_on :body %>
+        <%= f.label :icon %>
+        <%= f.text_field :icon, min: 0, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :position %>
+        <%= f.number_field :position, min: 0, class: 'form-control' %>
       </div>
     </div>
 
     <div class="col-md-6" data-hook="admin_page_form_right">
       <div class="form-group">
-        <%= f.label :layout %>
+        <%= f.label :layout, "Layout" %>
         <%= f.text_field :layout, class: 'form-control' %>
       </div>
 
@@ -36,48 +40,62 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :position %>
-        <%= f.number_field :position, min: 0, class: 'form-control' %>
-      </div>
+        <% if false %>
+        <!--
+        <div class="checkbox">
+          <%= f.label :show_in_sidebar do %>
+            <%= f.check_box :show_in_sidebar %>
+            <%= Spree::Page.human_attribute_name(:show_in_sidebar) %>
+          <% end %>
+        </div>
 
-      <div class="checkbox">
-        <%= f.label :show_in_sidebar do %>
-          <%= f.check_box :show_in_sidebar %>
-          <%= Spree::Page.human_attribute_name(:show_in_sidebar) %>
+        <div class="checkbox">
+          <%= f.label :show_in_header do %>
+            <%= f.check_box :show_in_header %>
+            <%= Spree::Page.human_attribute_name(:show_in_header) %>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :stores, plural_resource_name(Spree::Store) %>
+          <% Spree::Store.all.each do |store| %>
+            <div class="checkbox">
+              <%= f.label store.name.downcase.to_sym do %>
+                <%= check_box_tag 'page[store_ids][]', store.id, @page.stores.include?(store) %>
+                <%= store.name %>
+              <% end %>
+            </div>
+          <% end %>
+        </div> -->
         <% end %>
-      </div>
 
-      <div class="checkbox">
-        <%= f.label :show_in_header do %>
-          <%= f.check_box :show_in_header %>
-          <%= Spree::Page.human_attribute_name(:show_in_header) %>
-        <% end %>
-      </div>
+        <div class="checkbox">
+          <%= f.label :visible do %>
+            <%= f.check_box :visible %>
+            <%= Spree::Page.human_attribute_name(:visible) %>
+          <% end %>
+        </div>
 
-      <div class="checkbox">
-        <%= f.label :visible do %>
-          <%= f.check_box :visible %>
-          <%= Spree::Page.human_attribute_name(:visible) %>
-        <% end %>
-      </div>
+        <div class="checkbox">
+          <%= f.label :render_layout_as_partial do %>
+            <%= f.check_box :render_layout_as_partial %>
+            <%= Spree::Page.human_attribute_name(:render_layout_as_partial) %>
+          <% end %>
+        </div>
 
-      <div class="checkbox">
-        <%= f.label :render_layout_as_partial do %>
-          <%= f.check_box :render_layout_as_partial %>
-          <%= Spree::Page.human_attribute_name(:render_layout_as_partial) %>
-        <% end %>
+        <div class="checkbox">
+          <%= f.label :is_admin do %>
+            <%= f.check_box :is_admin %> Admin?
+          <% end %>
+        </div>
       </div>
+    </div>
 
+    <div class="col-md-12">
       <div class="form-group">
-        <%= f.label :stores, plural_resource_name(Spree::Store) %>
-        <% Spree::Store.all.each do |store| %>
-          <div class="checkbox">
-            <%= f.label store.name.downcase.to_sym do %>
-              <%= check_box_tag 'page[store_ids][]', store.id, @page.stores.include?(store) %>
-              <%= store.name %>
-            <% end %>
-          </div>
-        <% end %>
+        <%= f.label :body %> <span class="required">*</span>
+        <%= f.text_area :body, rows: 12, class: 'form-control' %>
+        <%= f.error_message_on :body %>
       </div>
     </div>
   </div>
