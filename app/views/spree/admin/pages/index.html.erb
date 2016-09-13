@@ -27,7 +27,7 @@
       <% @pages.each do |page| %>
         <tr data-hook="admin_pages_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id page %>">
           <td><%= page.title %></td>
-          <% link = page.is_admin ? "/documentation#{page.link}" : page.link %>
+          <% link = page.is_admin ? "/admin/documentation#{page.link}" : page.link %>
           <td><%= link_to link, link, target: '_blank' %></td>
           <td class="text-center"><i class="icon icon-<%= page.is_admin ? 'ok' : 'remove' %>"></i></td>
           <td class="text-center"><%= content_tag(:i, '', class: 'icon icon-ok') if page.visible %></td>

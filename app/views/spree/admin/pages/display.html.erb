@@ -5,7 +5,9 @@
 <% content_for :sidebar do %>
 <ul class="nav nav-pills nav-stacked" data-hook="admin_pages_tabs">
 	<% Spree::Page.where(is_admin: true).each do |page| %>
-		<li <%= 'class="active"' if @current == page.slug.sub('/','') %>><%= link_to_with_icon page.icon, page.title, "/documentation#{page.slug}" %></li>
+		<li role="presentation" class="<%= @current == page.slug.sub('/','') ? 'active' : '' %>">
+			<%= link_to_with_icon page.icon, page.title, "/documentation#{page.slug}" %>
+		</li>
 	<% end %>
 </ul>
 <% end %>
